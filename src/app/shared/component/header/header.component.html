@@ -9,7 +9,7 @@
         <li class="nav-item">
           <a class="nav-link " aria-current="page" [routerLink]="['/']" [routerLinkActive]=" ['active']">Home</a>
         </li>
-        <li class="nav-item" *ngIf="isAuthenticated | async">
+        <li class="nav-item">
           <a class="nav-link" [routerLink]="['counter']" [routerLinkActive]="['link-dark']" >Counter</a>
         </li>
         <li class="nav-item" *ngIf="isAuthenticated | async">

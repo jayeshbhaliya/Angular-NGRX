@@ -12,7 +12,7 @@
       </div>
       <div class="mb-3">
         <label for="password">Password</label>
-        <input type="text" class="form-control" formControlName="password">
+        <input type="password" class="form-control" formControlName="password">
         <div *ngIf="loginForm.get('password')?.touched && !loginForm.get('password')?.valid">
           Please enter valid password.
        </div>

@@ -17,24 +17,33 @@ export class EditPostComponent implements OnInit, OnDestroy {
   editPostForm: FormGroup;
   post: Post;
   postSubscription: Subscription;
-  constructor(private store: Store<AppState>, private route: ActivatedRoute, private router : Router) { }
+
+  constructor(private store: Store<AppState>, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
-    this.route.paramMap.subscribe((params) => {
-      const id = params.get('id');
-      
-      this.postSubscription = this.store.select(getPostById, { id }).subscribe((data) => {
-        this.post = data;
-        console.log(this.post);
-        this.postFormInit();
-      });
+    this.postFormInit()
+    this.postSubscription = this.store.select(getPostById).subscribe((post) => {
+      if (post) {
+        this.post = post;
+        this.editPostForm.patchValue({
+          title: post.title,
+          description: post.description,
+        });
+      }
     });
+    // this.route.paramMap.subscribe((params) => {
+    //   const id = params.get('id');
+    //   this.postSubscription = this.store.select(getPostById, { id }).subscribe((data) => {
+    //     this.post = data;
+    //     console.log(this.post);
+    //     this.postFormInit();
+    //   });
+    // });
   }
   postFormInit() {
-    if(this.post === undefined) {return}
     this.editPostForm = new FormGroup({
-      title: new FormControl(this.post.title, [Validators.required, Validators.minLength(3)]),
-      description: new FormControl(this.post.description, [Validators.required, Validators.minLength(6)]),
+      title: new FormControl(null, [Validators.required, Validators.minLength(3)]),
+      description: new FormControl(null, [Validators.required, Validators.minLength(6)]),
     })
   }
 
