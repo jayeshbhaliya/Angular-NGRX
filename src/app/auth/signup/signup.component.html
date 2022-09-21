@@ -1,0 +1,26 @@
+<div class="row">
+  <div class="col-md-6 offset-3">
+    <h3>Sign Up</h3>
+    <hr>
+    <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+      <div class="mb-3">
+        <label for="email">Email</label>
+        <input type="text" class=" form-control" formControlName="email">
+        <div *ngIf="signupForm.get('email')?.touched && !signupForm.get('email')?.valid">
+           Please enter valid email.
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="password">Password</label>
+        <input type="text" class="form-control" formControlName="password">
+        <div *ngIf="signupForm.get('password')?.touched && !signupForm.get('password')?.valid">
+          Please enter valid password.
+       </div>
+      </div>
+      <div class="mb-3">
+        <button type="submit" class="btn btn-primary"[disabled]="!signupForm.valid" >Signup</button>
+      </div>
+    </form>
+  </div>
+</div>
+
