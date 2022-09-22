@@ -30,4 +30,10 @@ export class PostService {
   deletePost(id : string){
     return this.http.delete(`https://angular-ngrx-project-default-rtdb.firebaseio.com/posts/${id}.json`)
   }
+
+  getPostById(id: string): Observable<Post> {
+    return this.http.get<Post>(
+      `https:/angular-ngrx-project-default-rtdb.firebaseio.com/posts/${id}.json`
+    );
+  }
 }

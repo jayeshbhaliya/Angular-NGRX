@@ -16,7 +16,9 @@
           <td>{{post.id}}</td>
           <td>{{post.title}}</td>
           <td>{{post.description}}</td>
-          <td><a class="btn btn-outline-primary" [routerLink]="['edit',post.id]">Edit</a> | <a class="btn btn-outline-danger" (click)="onDeletePost(post.id)" >Delete</a></td>
+          <td><a class="btn btn-outline-primary" [routerLink]="['edit',post.id]">Edit</a> | <a class="btn btn-outline-danger" (click)="onDeletePost(post.id)" >Delete</a> | <a class="btn btn-outline-info" [routerLink]="['details', post.id]"
+            >Details
+          </a></td>
         </tr>
       </tbody>
      </table>
